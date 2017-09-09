@@ -1,0 +1,15 @@
+<resources>
+
+    <string-array name="Classes">
+        <item>Druid</item>
+        <item>Hunter</item>
+        <item>Mage</item>
+        <item>Paladin</item>
+        <item>Priest</item>
+        <item>Rogue</item>
+        <item>Shaman</item>
+        <item>Warlock</item>
+        <item>Warrior</item>
+        <item>Neutral</item>
+    </string-array>
+</resources>

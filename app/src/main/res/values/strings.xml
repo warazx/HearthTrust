@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HearthTrust</string>
+    <string name="MashapeHead">X-Mashape-Key</string>
+    <string name="MashapeKey">gPScgW09k8mshKfpTv5zgWLrQ7vjp1uRziAjsnl0N0L1hEHZkK</string>
 </resources>
