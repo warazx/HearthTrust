@@ -40,6 +40,6 @@ public class ApiUrl {
                 str = "/Neutral";
                 break;
         }
-        return PREFIX + "/classes" + str;
+        return PREFIX + "/classes" + str + "?collectible=1";
     }
 }

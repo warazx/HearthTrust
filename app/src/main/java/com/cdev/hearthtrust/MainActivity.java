@@ -11,10 +11,11 @@ import com.cdev.hearthtrust.util.api.ApiUrl;
 import com.cdev.hearthtrust.util.enums.HSClass;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
-    private ListView drawerList;
+    private ListView drawerList, contentList;
     private String[] classes;
 
     @Override
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerList = findViewById(R.id.left_drawer);
+        contentList = findViewById(R.id.card_list);
         classes = getResources().getStringArray(R.array.Classes);
 
         drawerList.setAdapter(new ArrayAdapter<>(this,

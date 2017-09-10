@@ -5,11 +5,18 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cdev.hearthtrust.R;
+import com.cdev.hearthtrust.models.HsCard;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,19 +43,35 @@ public class ApiHelper {
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
+            List<HsCard> cards;
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
 
+
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String string = response.body().string();
+                try {
+                    Gson gson = new Gson();
+                    Type listType = new TypeToken<List<HsCard>>(){}.getType();
+                    cards = gson.fromJson(response.body().string(), listType);
+                    Log.d("TEST", cards.toString());
+
+
+
+                    //HsCardResponse[] hsCardResponse = HsCardResponse.parseJSON(response.body().string());
+                    //Log.d("TAG", "" + hsCardResponse);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        TextView textView = ((Activity)context).findViewById(R.id.content_text);
-                        textView.setText(string);
+                        ListView listView = ((Activity)context).findViewById(R.id.card_list);
+                        listView.setAdapter(new ArrayAdapter<>(context, R.layout.card_list_item, cards));
                     }
                 });
             }
